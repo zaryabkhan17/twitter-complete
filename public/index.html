@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="socket.io.js"></script>
+
+
+</head>
+<body>
+    
+<form id="msform">
+   
+    <fieldset>
+      <h2 class="accountheading">Create your account</h2>
+      <h5 class="heading5">Already a member ? <a href="login.html">Log In</a></h5>
+      <input type="text" id="name"  required placeholder="Type Name" />
+      <input type="email" id="email" required  placeholder="Email" />
+      <input type="text" id="phone" required  placeholder="Phone" />
+      <input type="password" id="password" required  placeholder="Password" />
+      <button class="button" onclick="return signUp()">Register</button>
+    </fieldset>   
+  </form>   
+</body>
+<script src="app.js"></script>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="socket.io.js"></script>
+</head>
+
+<body onload="getProfile()">
+
+    <div class="wrapper">
+        <header>
+
+            <div class="logo">
+                <a href="dashboard.html" title=""><img src="" alt=""></a>
+            </div>
+
+            <nav>
+
+                <button onclick="logout()" href="#">
+
+                    Logout
+                </button>
+
+
+            </nav>
+
+
+        </header>
+        <main>
+            <div class="welcome">
+                <h3 id="blueText">Welcome </h3>
+                <h3 id="resUserName"></h3>
+
+            </div>
+            <div>
+
+                <ul class="side">
+                    <li>
+                        <a onclick="userTweets()" href="#" title="">My
+                            Profile</a>
+                    </li>
+                    <li>
+                        <a onclick="getTweets()" href="#" title="">
+                            Home</a>
+
+                    </li>
+                </ul>
+            </div>
+
+
+
+            <div class="post">
+
+
+                <input id="userPost" type="text" class="form-control" placeholder="What's happening">
+
+                <button id="postBtn" class="button" onclick="tweetme()">Tweet</button>
+
+                <div id="postShow">
+                    <ul class="posts" id="posts"></ul>
+                    <div id="myPost"></div>
+                </div>
+            </div>
+        </main>
+
+
+
+    </div>
+</body>
+<script src="app.js"></script>
+
+<script>
+   
+    var user = localStorage.getItem('current_user')
+    var newUserEmail = JSON.parse(user).email;
+
+ 
+    document.getElementById('resUserName').innerHTML = JSON.parse(user).name
+
+    function upload() {
+
+        var fileInput = document.getElementById("fileInput");
+       
+        let formData = new FormData();
+
+        formData.append("myFile", fileInput.files[0]);
+        formData.append("myName", "zar");
+        formData.append("myDetails",
+            JSON.stringify({
+
+                "email": newUserEmail,
+                "year": "2021"
+            })
+        );
+
+        axios({
+            method: 'post',
+           
+            url: "http://localhost:3000",
+            data: formData,
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+            .then(res => {
+
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+        return false;
+
+    }
+
+</script>
+
+</html>
